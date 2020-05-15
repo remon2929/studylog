@@ -11,7 +11,7 @@ end
 
 def create
 board = Board.create(board_params)
-
+flash[:notice] = "「#{board.title}」の掲示板を作成しました"
 redirect_to board
 end
 
@@ -29,8 +29,8 @@ def update
 end
 
 def destroy
-  board.delete
-
+  @board.delete
+  flash[:notice] = "「#{@board.title}」の掲示板が削除されました"
   redirect_to boards_path
 end
 
