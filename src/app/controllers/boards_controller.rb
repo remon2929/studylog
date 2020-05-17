@@ -42,14 +42,14 @@ end
 end
 
 def destroy
-  @board.delete
+  @board.destroy
   flash[:notice] = "「#{@board.title}」の掲示板が削除されました"
   redirect_to boards_path
 end
 
 private 
 def board_params
-params.require(:board).permit(:name, :title, :body)
+params.require(:board).permit(:name, :title, :body, tag_ids:[])
 end
 
 def set_target_board
