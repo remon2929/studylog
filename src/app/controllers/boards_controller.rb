@@ -27,12 +27,18 @@ def show
 end
 
 def edit
-
+@board = Board.find(params[:id])
 end
 
 def update
-  board.update(board_params)
-  redirect_to board
+  if @board.update(board_params)
+    redirect_to @board
+  else
+    redirect_to edit_board_path, flash: {
+      board: @board,
+      error_messages: @board.errors.full_messages
+    }  
+end
 end
 
 def destroy
